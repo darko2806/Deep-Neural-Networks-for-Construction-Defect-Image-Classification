@@ -1,0 +1,284 @@
+===== README / MD FILE =====
+# MBDD2025: A Deep Learning-Oriented Dataset for Diverse Building Defect Detection from UAV Images
+
+## 📂 Dataset Overview
+
+**MBDD2025** is a large-scale dataset of building wall defects collected via UAV imagery. The dataset is designed for object detection and classification tasks in the field of intelligent building inspection. It includes a wide range of structural types and defect categories, making it suitable for generalization across various real-world scenarios.
+
+- **Total images**: 14,471
+- **Image resolution**: High-resolution UAV photos
+- **Defect types (5)**:  
+  - Crack  
+  - Leakage  
+  - Abscission  
+  - Corrosion  
+  - Bulge 
+
+- **Building structure types (6)**:  
+  - Steel structure  
+  - Wooden structure
+  - Masonry structure
+  - Brick and wood structure
+  - Brick concrete structure  
+  - Reinforced concrete structure  
+
+- **Annotation format**: VOC XML  
+- **Compression format**: `.zip`
+
+---
+
+## 📁 Folder Structure
+MBDD2025/
+├── JPEGImages/ # Original UAV images
+├── Annotations/ # VOC XML annotation files
+├── Labels/ # Optional class label file (if available)
+└── README.md # This file
+
+---
+
+## 🧾 Annotation Format
+
+- Annotation files are in **PASCAL VOC XML** format.
+- Each XML file corresponds to an image and contains:
+  - Bounding boxes
+  - Object class labels (defects only)
+  - Image size and metadata
+
+---
+
+## 🚀 Usage
+
+This dataset can be used to train object detection models such as:
+
+- [Faster R-CNN](https://arxiv.org/abs/1506.01497)
+- [YOLOv5/YOLOv8](https://github.com/ultralytics/yolov5)
+
+### Steps:
+
+1. Download and unzip the dataset:
+
+unzip MBDD2025.zip
+cd MBDD2025
+
+2. Use tools like [MMDetection](https://github.com/open-mmlab/mmdetection) or Ultralytics YOLO to train on the VOC format.
+
+3. Make sure to convert labels if needed (e.g., to COCO or YOLO format).
+
+---
+
+## 📜 License
+
+This dataset is released under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.  
+You are free to use, share, and adapt the dataset, provided appropriate credit is given.
+
+---
+
+## 📣 Citation
+
+If you use **MBDD2025** in your research, please cite the dataset as follows:
+
+@misc{MBDD2025,
+title = {MBDD2025: A Deep Learning-Oriented Dataset for Diverse Building Defect Detection from UAV Images},
+author = {Qikai Zha,Yiming Yao,Wenkang Zhang,Wanqi Ma},
+year = {2025},
+publisher = {Zenodo},
+doi = {https://doi.org/10.5281/zenodo.15622584}
+}
+
+> 📌 *Replace `Your Name(s)` and `DOI` with the actual author(s) and DOI once the dataset is published on Zenodo.*
+
+---
+
+## 💬 Contact
+
+If you have any questions or suggestions, feel free to open an issue or contact the dataset maintainer.
+
+===== XML SAMPLE 1 =====
+<?xml version='1.0' encoding='utf-8'?>
+<annotation>
+  <folder>/dji</folder>
+  <filename>1.jpg</filename>
+  <source>
+    <database>Unknown</database>
+    <annotation>Unknown</annotation>
+    <image>Unknown</image>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>720</height>
+    <depth />
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>609.72</xmin>
+      <ymin>201.06</ymin>
+      <xmax>691.98</xmax>
+      <ymax>309.81</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+</annotation>
+===== TXT SAMPLE 1 =====
+3 0.5084765625000001 0.35477083333333337 0.06426562499999999 0.15104166666666669
+
+===== XML SAMPLE 2 =====
+<?xml version='1.0' encoding='utf-8'?>
+<annotation>
+  <folder>/dji</folder>
+  <filename>10.jpg</filename>
+  <source>
+    <database>Unknown</database>
+    <annotation>Unknown</annotation>
+    <image>Unknown</image>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>720</height>
+    <depth />
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>631.88</xmin>
+      <ymin>202.46</ymin>
+      <xmax>707.17</xmax>
+      <ymax>297.26</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+</annotation>
+===== TXT SAMPLE 2 =====
+3 0.52306640625 0.3470277777777778 0.05882031249999997 0.13166666666666665
+
+===== XML SAMPLE 3 =====
+<?xml version='1.0' encoding='utf-8'?>
+<annotation>
+  <folder>/dji</folder>
+  <filename>100.jpg</filename>
+  <source>
+    <database>Unknown</database>
+    <annotation>Unknown</annotation>
+    <image>Unknown</image>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>720</height>
+    <depth />
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>2.38</xmin>
+      <ymin>174.69</ymin>
+      <xmax>44.21</xmax>
+      <ymax>290.87</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>93.01</xmin>
+      <ymin>243.24</ymin>
+      <xmax>242.89</xmax>
+      <ymax>293.2</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>290.53</xmin>
+      <ymin>207.22</ymin>
+      <xmax>335.84</xmax>
+      <ymax>246.72</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>635.6</xmin>
+      <ymin>209.54</ymin>
+      <xmax>691.37</xmax>
+      <ymax>254.86</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+  <object>
+    <name>corrosion</name>
+    <truncated>0</truncated>
+    <occluded>0</occluded>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>722.74</xmin>
+      <ymin>243.24</ymin>
+      <xmax>765.73</xmax>
+      <ymax>288.55</ymax>
+    </bndbox>
+    <attributes>
+      <attribute>
+        <name>rotation</name>
+        <value>0.0</value>
+      </attribute>
+    </attributes>
+  </object>
+</annotation>
+===== TXT SAMPLE 3 =====
+3 0.018199218750000003 0.32330555555555557 0.0326796875 0.16136111111111112
+3 0.13121093749999999 0.37252777777777785 0.11709375 0.06938888888888886
+3 0.24467578124999997 0.3152361111111111 0.035398437500000005 0.05486111111111111
+3 0.51834765625 0.3225 0.043570312499999986 0.06294444444444448
+3 0.58143359375 0.3692986111111111 0.03358593750000001 0.06293055555555556

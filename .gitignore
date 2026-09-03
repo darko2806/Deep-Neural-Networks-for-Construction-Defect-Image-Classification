@@ -53,3 +53,6 @@ logs/
 .DS_Store
 *.log
 *.tmp
+
+# Generated dataset analysis files
+dataset_analysis/*.csv

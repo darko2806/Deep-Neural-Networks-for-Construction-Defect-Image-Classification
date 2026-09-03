@@ -1,0 +1,184 @@
+
+===========================================================================
+MBDD2025 BOUNDING-BOX SIZE ANALYSIS
+===========================================================================
+
+--- BASIC COUNTS ---
+Number of images:          14471
+Number of bounding boxes:  57613
+
+--- BOUNDING BOX AREA / IMAGE AREA ---
+P01: 0.000151
+P05: 0.000560
+P10: 0.001180
+P25: 0.003801
+P50: 0.011452
+P75: 0.033355
+P90: 0.076766
+P95: 0.138032
+P99: 0.329182
+
+Median relative area:
+1.145% of the entire image
+
+--- FRACTION OF SMALL DEFECTS ---
+Area <  0.10% of image:   4915 boxes (  8.53%)
+Area <  0.25% of image:  10747 boxes ( 18.65%)
+Area <  0.50% of image:  17451 boxes ( 30.29%)
+Area <  1.00% of image:  26847 boxes ( 46.60%)
+Area <  2.00% of image:  36602 boxes ( 63.53%)
+Area <  5.00% of image:  48049 boxes ( 83.40%)
+Area < 10.00% of image:  53239 boxes ( 92.41%)
+
+---------------------------------------------------------------------------
+AFTER RESIZING FULL IMAGE TO 224 x 224
+---------------------------------------------------------------------------
+
+Bounding-box width in CNN input:
+Median: 20.33 pixels
+P10:    5.61 pixels
+P90:    87.63 pixels
+
+Bounding-box height in CNN input:
+Median: 24.47 pixels
+P10:    7.23 pixels
+P90:    95.43 pixels
+Width OR height <  4px:   3808 (  6.61%)
+Width OR height <  8px:  13945 ( 24.20%)
+Width OR height < 16px:  32518 ( 56.44%)
+Width OR height < 32px:  47330 ( 82.15%)
+
+---------------------------------------------------------------------------
+AFTER RESIZING FULL IMAGE TO 299 x 299
+---------------------------------------------------------------------------
+
+Bounding-box width in CNN input:
+Median: 27.14 pixels
+P10:    7.49 pixels
+P90:    116.97 pixels
+
+Bounding-box height in CNN input:
+Median: 32.66 pixels
+P10:    9.65 pixels
+P90:    127.39 pixels
+Width OR height <  4px:   2028 (  3.52%)
+Width OR height <  8px:   8310 ( 14.42%)
+Width OR height < 16px:  24179 ( 41.97%)
+Width OR height < 32px:  42003 ( 72.91%)
+
+===========================================================================
+PER-CLASS BOUNDING-BOX STATISTICS
+===========================================================================
+
+---------------------------------------------------------------------------
+ABSCISSION
+---------------------------------------------------------------------------
+Number of instances: 22702
+Median area: 0.743%
+Mean area:   2.813%
+P10 area:    0.071%
+P90 area:    6.783%
+
+At 224 x 224:
+Median width:  19.27px
+Median height: 19.41px
+
+---------------------------------------------------------------------------
+BULGE
+---------------------------------------------------------------------------
+Number of instances: 2018
+Median area: 0.888%
+Mean area:   12.703%
+P10 area:    0.022%
+P90 area:    44.076%
+
+At 224 x 224:
+Median width:  20.86px
+Median height: 22.64px
+
+---------------------------------------------------------------------------
+CORROSION
+---------------------------------------------------------------------------
+Number of instances: 9207
+Median area: 0.888%
+Mean area:   2.625%
+P10 area:    0.148%
+P90 area:    6.310%
+
+At 224 x 224:
+Median width:  18.94px
+Median height: 19.16px
+
+---------------------------------------------------------------------------
+CRACK
+---------------------------------------------------------------------------
+Number of instances: 17044
+Median area: 1.146%
+Mean area:   2.156%
+P10 area:    0.198%
+P90 area:    5.084%
+
+At 224 x 224:
+Median width:  17.75px
+Median height: 27.44px
+
+---------------------------------------------------------------------------
+LEAKAGE
+---------------------------------------------------------------------------
+Number of instances: 6642
+Median area: 4.102%
+Mean area:   5.814%
+P10 area:    1.343%
+P90 area:    12.428%
+
+At 224 x 224:
+Median width:  31.71px
+Median height: 64.46px
+
+===========================================================================
+IMAGE-LEVEL DEFECT SIZE
+===========================================================================
+
+Largest defect per image:
+Relative area percentiles:
+P01: 0.002509
+P05: 0.006944
+P10: 0.010213
+P25: 0.022035
+P50: 0.046821
+P75: 0.105301
+P90: 0.202911
+P95: 0.290286
+P99: 0.555790
+
+Median largest defect occupies 4.682% of the image.
+
+Sum of bounding-box areas per image:
+(Can overestimate coverage when boxes overlap.)
+P01: 0.003726
+P05: 0.010873
+P10: 0.018855
+P25: 0.035911
+P50: 0.083618
+P75: 0.191060
+P90: 0.290079
+P95: 0.395024
+P99: 0.618064
+
+===========================================================================
+CLASS COUNTS VALIDATION
+===========================================================================
+class
+abscission    22702
+crack         17044
+corrosion      9207
+leakage        6642
+bulge          2018
+
+CSV files created:
+  bbox_statistics.csv
+  image_bbox_statistics.csv
+
+===========================================================================
+END
+===========================================================================

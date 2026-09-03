@@ -1,0 +1,89 @@
+
+======================================================================
+MBDD2025 DATASET ANALYSIS
+======================================================================
+
+--- BASIC COUNTS ---
+XML annotations: 14471
+JPG images:      14471
+TXT labels:      14471
+
+--- CLASSES ---
+Number of classes: 5
+Classes: ['abscission', 'bulge', 'corrosion', 'crack', 'leakage']
+
+--- DEFECT INSTANCES PER CLASS ---
+abscission          : 22702
+crack               : 17044
+corrosion           : 9207
+leakage             : 6642
+bulge   	    : 2018
+
+--- IMAGES CONTAINING EACH CLASS ---
+12crack               :   6253 images ( 43.21%)
+abscission          :   5166 images ( 35.70%)
+leakage             :   2464 images ( 17.03%)
+corrosion           :   2102 images ( 14.53%)
+bulge               :   1337 images (  9.24%)
+
+--- NUMBER OF OBJECTS / BOUNDING BOXES ---
+Images with 0 objects:  8
+Images with 1 object:   4081
+Images with >1 objects: 10382
+Average objects/image: 3.981
+Median objects/image: 2.000
+Maximum objects/image: 84
+
+--- NUMBER OF UNIQUE DEFECT TYPES PER IMAGE ---
+0 unique class(es):      8 images (  0.06%)
+1 unique class(es):  12064 images ( 83.37%)
+2 unique class(es):   1967 images ( 13.59%)
+3 unique class(es):    404 images (  2.79%)
+4 unique class(es):     28 images (  0.19%)
+
+--- SINGLE VS MULTIPLE DEFECT TYPES ---
+Images with exactly one defect type: 12064
+Images with multiple defect types:   2399
+
+--- CLASS COMBINATIONS ---
+crack                                             : 4363
+abscission                                        : 3340
+leakage                                           : 1949
+corrosion                                         : 1662
+abscission + crack                                : 924
+bulge                                             : 750
+crack + leakage                                   : 349
+abscission + bulge                                : 305
+abscission + bulge + crack                        : 270
+corrosion + crack                                 : 187
+abscission + corrosion                            : 156
+abscission + crack + leakage                      : 71
+abscission + corrosion + crack                    : 39
+abscission + leakage                              : 31
+corrosion + crack + leakage                       : 22
+abscission + corrosion + crack + leakage          : 16
+corrosion + leakage                               : 15
+abscission + bulge + crack + leakage              : 9
+abscission + bulge + corrosion + crack            : 3
+abscission + corrosion + leakage                  : 2
+
+--- IMAGE RESOLUTIONS ---
+1280 x 720: 14102
+720 x 1280: 254
+960 x 544: 115
+
+--- CONSISTENCY CHECK ---
+XML without JPG: 0
+JPG without XML: 0
+XML without TXT: 0
+TXT without XML: 0
+
+Examples images with NO annotated objects:
+['Hefei10237', 'Hefei10278', 'Hefei10421', 'Hefei13256', 'Hefei1821', 'Hefei425', 'Hefei901', 'Hefei9028']
+
+Examples images with MULTIPLE defect types:
+['Hefei1000', 'Hefei1001', 'Hefei1002', 'Hefei1003', 'Hefei1004', 'Hefei1005', 'Hefei1006', 'Hefei1007', 'Hefei1008', 'Hefei1009', 'Hefei1010', 'Hefei1011', 'Hefei1012', 'Hefei1013', 'Hefei1014', 'Hefei1015', 'Hefei1016', 'Hefei1017', 'Hefei10181', 'Hefei10182']
+
+======================================================================
+END
+======================================================================

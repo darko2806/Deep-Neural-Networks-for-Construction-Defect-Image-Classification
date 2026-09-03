@@ -1,0 +1,6 @@
+MBDD2025
+├── Annotations
+├── JPEGImages
+└── Labels
+
+4 directories

@@ -1,0 +1,49 @@
+===== FILE COUNTS =====
+Annotations:
+14471
+JPEGImages:
+14471
+Labels:
+14471
+
+===== FILE EXTENSIONS =====
+  14471 xml
+  14471 txt
+  14471 jpg
+      1 md
+
+===== SAMPLE ANNOTATIONS =====
+MBDD2025/Annotations/Hefei1.xml
+MBDD2025/Annotations/Hefei10.xml
+MBDD2025/Annotations/Hefei100.xml
+MBDD2025/Annotations/Hefei1000.xml
+MBDD2025/Annotations/Hefei10000.xml
+MBDD2025/Annotations/Hefei10001.xml
+MBDD2025/Annotations/Hefei10002.xml
+MBDD2025/Annotations/Hefei10003.xml
+MBDD2025/Annotations/Hefei10004.xml
+MBDD2025/Annotations/Hefei10005.xml
+
+===== SAMPLE IMAGES =====
+MBDD2025/JPEGImages/Hefei1.jpg
+MBDD2025/JPEGImages/Hefei10.jpg
+MBDD2025/JPEGImages/Hefei100.jpg
+MBDD2025/JPEGImages/Hefei1000.jpg
+MBDD2025/JPEGImages/Hefei10000.jpg
+MBDD2025/JPEGImages/Hefei10001.jpg
+MBDD2025/JPEGImages/Hefei10002.jpg
+MBDD2025/JPEGImages/Hefei10003.jpg
+MBDD2025/JPEGImages/Hefei10004.jpg
+MBDD2025/JPEGImages/Hefei10005.jpg
+
+===== SAMPLE LABELS =====
+MBDD2025/Labels/Hefei1.txt
+MBDD2025/Labels/Hefei10.txt
+MBDD2025/Labels/Hefei100.txt
+MBDD2025/Labels/Hefei1000.txt
+MBDD2025/Labels/Hefei10000.txt
+MBDD2025/Labels/Hefei10001.txt
+MBDD2025/Labels/Hefei10002.txt
+MBDD2025/Labels/Hefei10003.txt
+MBDD2025/Labels/Hefei10004.txt
+MBDD2025/Labels/Hefei10005.txt
