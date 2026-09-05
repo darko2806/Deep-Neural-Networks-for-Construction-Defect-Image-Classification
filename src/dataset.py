@@ -1,3 +1,4 @@
+import hashlib
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -79,3 +80,33 @@ def build_metadata(dataset_dir):
     metadata = pd.DataFrame(records)
 
     return metadata
+
+def select_single_class_images(metadata):
+    single_class_metadata = metadata.loc[
+        metadata["target_class"].notna()
+    ].copy()
+
+    single_class_metadata = single_class_metadata.reset_index(drop=True)
+
+    return single_class_metadata
+
+def compute_file_hash(file_path, chunk_size=1024 * 1024):
+    file_path = Path(file_path)
+    file_hash = hashlib.sha256()
+
+    with file_path.open("rb") as file:
+        for chunk in iter(lambda: file.read(chunk_size), b""):
+            file_hash.update(chunk)
+
+    return file_hash.hexdigest()
+
+
+def add_content_hashes(metadata):
+    metadata_with_hashes = metadata.copy()
+
+    metadata_with_hashes["content_hash"] = (
+        metadata_with_hashes["image_path"]
+        .apply(compute_file_hash)
+    )
+
+    return metadata_with_hashes
