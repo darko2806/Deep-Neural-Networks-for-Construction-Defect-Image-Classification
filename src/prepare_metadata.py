@@ -6,6 +6,12 @@ from src.dataset import (
     build_metadata,
     select_single_class_images,
 )
+from src.visual_groups import (
+    add_perceptual_hashes,
+    assign_visual_groups,
+    find_visual_group_class_conflicts,
+    remove_visual_group_class_conflicts,
+)
 
 
 def main():
@@ -18,18 +24,51 @@ def main():
     print("Izdvajanje jednoklasnih slika...")
     metadata = select_single_class_images(metadata)
 
-    print("Računanje hash vrednosti slika...")
+    print("Računanje SHA-256 hash vrednosti...")
     metadata = add_content_hashes(metadata)
 
-    print("Pravljenje train/validation/test podele...")
+    print("Računanje perceptual hash vrednosti...")
+    metadata = add_perceptual_hashes(metadata)
+
+    print("Formiranje povezanih vizuelnih grupa...")
+    metadata = assign_visual_groups(
+        metadata,
+        max_hamming_distance=6,
+    )
+
+    conflicts = find_visual_group_class_conflicts(
+        metadata
+    )
+
+    print(
+        "Broj slika u konfliktnim grupama:",
+        len(conflicts),
+    )
+
+    metadata = remove_visual_group_class_conflicts(
+        metadata
+    )
+
+    print("Pravljenje grupisane stratifikovane podele...")
     metadata = assign_data_splits(metadata)
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    metadata.to_csv(output_path, index=False)
+    output_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    metadata.to_csv(
+        output_path,
+        index=False,
+    )
 
     print(f"\nMetadata je sačuvan u: {output_path}")
     print(f"Broj redova: {len(metadata)}")
     print(f"Broj kolona: {len(metadata.columns)}")
+    print(
+        "Broj vizuelnih grupa:",
+        metadata["visual_group"].nunique(),
+    )
 
     print("\nBroj slika po splitu:")
     print(metadata["split"].value_counts())

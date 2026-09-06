@@ -2,9 +2,9 @@ import hashlib
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+import numpy as np
 import pandas as pd
-
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedGroupKFold
 
 def parse_annotation(xml_path):
     xml_path = Path(xml_path)
@@ -114,81 +114,103 @@ def add_content_hashes(metadata):
 
 def assign_data_splits(
     metadata,
-    train_size=0.8,
-    validation_size=0.1,
-    test_size=0.1,
+    group_column="visual_group",
+    n_splits=10,
+    validation_fold=0,
+    test_fold=1,
     random_state=42,
 ):
-    split_sizes = train_size + validation_size + test_size
+    required_columns = {
+        "target_class",
+        group_column,
+    }
 
-    if abs(split_sizes - 1.0) > 1e-8:
-        raise ValueError(
-            "train_size, validation_size i test_size moraju imati zbir 1.0"
-        )
-
-    required_columns = {"target_class", "content_hash"}
-    missing_columns = required_columns - set(metadata.columns)
+    missing_columns = (
+        required_columns - set(metadata.columns)
+    )
 
     if missing_columns:
         raise ValueError(
-            f"Nedostaju obavezne kolone: {sorted(missing_columns)}"
+            f"Nedostaju obavezne kolone: "
+            f"{sorted(missing_columns)}"
         )
 
     if metadata[list(required_columns)].isna().any().any():
         raise ValueError(
-            "target_class i content_hash ne smeju sadržati nedostajuće vrednosti"
+            "target_class i grupna kolona ne smeju "
+            "sadržati nedostajuće vrednosti"
         )
 
-    classes_per_hash = (
-        metadata.groupby("content_hash")["target_class"]
-        .nunique()
-    )
-
-    if (classes_per_hash > 1).any():
+    if n_splits < 3:
         raise ValueError(
-            "Identične slike ne smeju imati različite target_class vrednosti"
+            "n_splits mora biti najmanje 3"
         )
 
-    content_groups = (
-        metadata[
-            ["content_hash", "target_class"]
-        ]
-        .drop_duplicates(subset=["content_hash"])
-        .reset_index(drop=True)
-    )
+    selected_folds = {
+        validation_fold,
+        test_fold,
+    }
 
-    train_groups, remaining_groups = train_test_split(
-        content_groups,
-        test_size=validation_size + test_size,
-        stratify=content_groups["target_class"],
+    if len(selected_folds) != 2:
+        raise ValueError(
+            "Validation i test fold moraju biti različiti"
+        )
+
+    if not all(
+        0 <= fold < n_splits
+        for fold in selected_folds
+    ):
+        raise ValueError(
+            "Validation i test fold moraju biti "
+            "u opsegu od 0 do n_splits - 1"
+        )
+
+    splitter = StratifiedGroupKFold(
+        n_splits=n_splits,
+        shuffle=True,
         random_state=random_state,
     )
 
-    relative_test_size = test_size / (validation_size + test_size)
-
-    validation_groups, test_groups = train_test_split(
-        remaining_groups,
-        test_size=relative_test_size,
-        stratify=remaining_groups["target_class"],
-        random_state=random_state,
+    dummy_features = np.zeros(
+        (len(metadata), 1),
+        dtype=np.uint8,
     )
 
-    train_groups = train_groups.assign(split="train")
-    validation_groups = validation_groups.assign(split="validation")
-    test_groups = test_groups.assign(split="test")
+    fold_assignments = np.full(
+        len(metadata),
+        fill_value=-1,
+        dtype=int,
+    )
 
-    split_mapping = (
-        pd.concat(
-            [train_groups, validation_groups, test_groups],
-            ignore_index=True,
+    for fold_index, (_, held_out_indices) in enumerate(
+        splitter.split(
+            dummy_features,
+            metadata["target_class"],
+            groups=metadata[group_column],
         )
-        .set_index("content_hash")["split"]
+    ):
+        fold_assignments[held_out_indices] = fold_index
+
+    if (fold_assignments == -1).any():
+        raise RuntimeError(
+            "Neke slike nisu dobile fold"
+        )
+
+    split_values = np.full(
+        len(metadata),
+        fill_value="train",
+        dtype="<U10",
     )
+
+    split_values[
+        fold_assignments == validation_fold
+    ] = "validation"
+
+    split_values[
+        fold_assignments == test_fold
+    ] = "test"
 
     metadata_with_splits = metadata.copy()
-    metadata_with_splits["split"] = (
-        metadata_with_splits["content_hash"]
-        .map(split_mapping)
-    )
+    metadata_with_splits["split"] = split_values
 
     return metadata_with_splits
