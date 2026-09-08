@@ -3,8 +3,8 @@ from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 
 # Promeni ove putanje
-image_path = "./MBDD2025/JPEGImages/Hefei118.jpg"
-xml_path = "./MBDD2025/Annotations/Hefei118.xml"
+image_path = "../MBDD2025/JPEGImages/Hefei118.jpg"
+xml_path = "../MBDD2025/Annotations/Hefei118.xml"
 
 # Ucitaj sliku
 image = Image.open(image_path).convert("RGB")
