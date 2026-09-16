@@ -56,3 +56,7 @@ logs/
 
 # Generated dataset analysis files
 dataset_analysis/*.csv
+
+# Local documentation handoff bundle (contains copied result artifacts)
+documentation_export_ubuntu/
+documentation_export_ubuntu.zip
